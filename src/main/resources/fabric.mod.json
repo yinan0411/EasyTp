@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "easytp",
+	"version": "${version}",
+	"name": "EasyTp",
+	"description": "一款轻量的服务端传送模组 输入/EasyTpHelp查看指令",
+	"authors": [
+		"杰杰大王"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/easytp/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.jiejie.EasyTp"
+		],
+		"client": []
+	},
+	"mixins": [
+		"easytp.mixins.json",
+		{
+			"config": "easytp.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
