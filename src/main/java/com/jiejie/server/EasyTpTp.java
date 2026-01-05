@@ -6,23 +6,24 @@ import com.jiejie.util.GlobalVariables;
 import com.jiejie.util.Teleportation;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //1.0版本创建tps
 //1.4新增同意 加优化tps指令 重写tps指令功能
 public class EasyTpTp {
 
     private List<playerTp> toRemoveList = new ArrayList<>();
-
     public void easyTp() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("tps")
@@ -58,9 +59,37 @@ public class EasyTpTp {
                             .append(Text.literal("玩家 ").formatted(Formatting.WHITE)
                                     .append(Text.literal(playerTo.getName().getString()).formatted(Formatting.GREEN)
                                             .append(Text.literal(" 向你发送了一个传送请求 输入").formatted(Formatting.WHITE)
-                                                    .append(Text.literal("/tps true [对应的玩家名字]").formatted(Formatting.RED)
+                                                    .append(Text.literal("/tps true [对应的玩家名字]").styled(style -> style.withColor(Formatting.GREEN)
+                                                            .withClickEvent(new ClickEvent(
+                                                                    ClickEvent.Action.SUGGEST_COMMAND,
+                                                                    "/tps ture " + playerTo.getName().getString() + " "
+                                                            ))
+                                                            .withHoverEvent(new HoverEvent(
+                                                                    HoverEvent.Action.SHOW_ENTITY,
+                                                                    new HoverEvent.EntityContent(
+                                                                            playerTo.getType(),
+                                                                            playerTo.getUuid(),
+                                                                            playerTo.getDisplayName()
+                                                                    )
+                                                            ))
+                                                            .withInsertion(playerTo.getName().getString())
+                                                    ).formatted(Formatting.RED)
                                                             .append(Text.literal("和").formatted(Formatting.WHITE)
-                                                                    .append(Text.literal("/tps false [对应的玩家名字]").formatted(Formatting.RED)
+                                                                    .append(Text.literal("/tps false [对应的玩家名字]").styled(style -> style.withColor(Formatting.GREEN)
+                                                                            .withClickEvent(new ClickEvent(
+                                                                                    ClickEvent.Action.SUGGEST_COMMAND,
+                                                                                    "/tps false " + playerTo.getName().getString() + " "
+                                                                            ))
+                                                                            .withHoverEvent(new HoverEvent(
+                                                                                    HoverEvent.Action.SHOW_ENTITY,
+                                                                                    new HoverEvent.EntityContent(
+                                                                                            playerTo.getType(),
+                                                                                            playerTo.getUuid(),
+                                                                                            playerTo.getDisplayName()
+                                                                                    )
+                                                                            ))
+                                                                            .withInsertion(playerTo.getName().getString())
+                                                                    ).formatted(Formatting.RED)
                                                                             .append(Text.literal("来接受请求").formatted(Formatting.WHITE)))))))
                             ));
                     return 1;

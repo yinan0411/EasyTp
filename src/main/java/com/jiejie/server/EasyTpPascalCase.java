@@ -10,7 +10,6 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -18,16 +17,15 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.ChunkPos;
 
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 //1.3新添加服务器清理功能 每5分钟清理一次掉落物
 public class EasyTpPascalCase {
     //手动设置value值 true 为开启 false 为不开启
-    private boolean isTaskEnabled = false;
+    public static boolean isTaskEnabled = false;
     //初始设置时间* 60 * 20
     private Integer PERIOD_TICKS = 5;
     private long currentTick = 0;
