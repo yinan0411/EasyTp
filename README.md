@@ -1,3 +1,7 @@
+<h1>1.4.1</h1>
+A new quick command generation feature has been added. Simply click the corresponding command in the dialog box with your mouse to generate it instantly.
+
+新增了快捷生成命令,只需要鼠标在对话栏地点击对应命令即可快捷生成命令
 <h1>1.4</h1>
 Optimized the tps command functionality. You can now approve or deny teleportation requests. Enter /tps followed by the player name: /tps true (Allow all current players' teleportation requests) /tps false (Deny all current players' teleportation requests) /tps true [player] (Allow the specified player to teleport when multiple requests exist) /tps false [player] (Deny the specified player's teleportation when multiple requests exist)
 
